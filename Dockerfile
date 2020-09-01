@@ -16,7 +16,7 @@ RUN cd /tmp \
     && LANG=C.UTF-8 add-apt-repository -y ppa:ondrej/php \
     && apt-get update \
     && apt-get install -yq --no-install-recommends \
-        libzmq-dev \
+        libzmq3-dev \
         php-pear \
         php7.2-bcmath \
         php7.2-bz2 \
@@ -39,9 +39,7 @@ RUN cd /tmp \
         php7.2-xmlrpc \
         php7.2-xsl \
         php7.2-zip \
-    && yes '' | pecl install zmq-beta \
-    && echo "extension=zmq.so" > /etc/php/7.2/mods-available/zmq.ini \
-    && ln -s /etc/php/7.2/mods-available/zmq.ini /etc/php/7.2/cli/conf.d/30-zmq.ini \
+        php-zmq \
     && chmod 0755 install-composer.sh && ./install-composer.sh \
     && chmod 0755 composer.phar && mv composer.phar /usr/bin/composer \
     && curl -s -L -O "https://litipk.github.io/Jupyter-PHP-Installer/dist/jupyter-php-installer.phar" \
